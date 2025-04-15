@@ -42,15 +42,5 @@ Address.java
 
 ## 📷 Class Diagram
 
-<img src="screenshots/class_diagram.png" alt="Class Diagram" width="600"/>
+![Class Diagram](https://github.com/yahaveliyahu/yahaveliyahu-Zoo-Management-System-Java-OOP/assets/123456789/class_diagram.png)
 
-## 🚀 How to Run
-
-Compile and run with:
-
-```bash
-javac *.java
-java Main
-```
-
-Or open with IntelliJ IDEA or another Java IDE.
