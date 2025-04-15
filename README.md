@@ -42,4 +42,4 @@ Address.java
 
 ## 📷 Class Diagram
 
-![UML Diagram](class diagram zoo.png)
+![UML Diagram](class_diagram_zoo.png)
