@@ -42,5 +42,5 @@ Address.java
 
 ## 📷 Class Diagram
 
-![Class Diagram](https://github.com/yahaveliyahu/yahaveliyahu-Zoo-Management-System-Java-OOP/assets/123456789/class_diagram.png)
+![Class Diagram](https://github.com//yahaveliyahu-Zoo-Management-System-Java-OOP/assets/123456789/class_diagram.png)
 
