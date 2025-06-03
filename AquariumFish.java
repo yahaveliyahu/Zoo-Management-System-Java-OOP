@@ -3,29 +3,37 @@ package yahav_eliyahu_matanya_cohen_arad_rotem  ;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class AquariumFish {
-    private int age;
+public class AquariumFish extends Animal {
     private float length;
     private String sign;
     private String[] colorsArray;
     private int happiness;
 
     public AquariumFish(int age, float length, String sign, String[] colors) {
-        this.age = age;
+        super(age);
         this.length = length;
         this.sign = sign;
         this.colorsArray = colors;
         happiness=100;// at the start every animal has 100 happiness
     }
-    
-    public AquariumFish(){
-        this.colorsArray=new String[0];
-    }
 
     public AquariumFish(int age, float length) {
-        this.age=age;
-        this.length=length;
+        super(age);
+        this.length = length;
+        this.colorsArray = new String[0]; // אתחול כדי למנוע NullPointerException
+        this.happiness = 100;
     }
+
+
+
+//    public AquariumFish(){
+//        this.colorsArray=new String[0];
+//    }
+//
+//    public AquariumFish(int age, float length) {
+//        this.age=age;
+//        this.length=length;
+//    }
 
     public int getHappiness() {
         return happiness;
@@ -65,13 +73,11 @@ public class AquariumFish {
 
     @Override
     public String toString() {
-        return
-                "{age=" + age +
-                        ", length=" + String.format("%.2f",length) +
-                        ", sign='" + sign + '\'' +
-                        ", colors=" + Arrays.toString(colorsArray) +
-                        ", Happiness="+happiness+
-                        '}';
+        return super.toString()
+                        + ", length=" + String.format("%.2f",length)
+                        + ", sign='" + sign + '\''
+                        + ", colors=" + Arrays.toString(colorsArray)
+                        + ", Happiness="+happiness;
     }
     public String[] getColorsArray() {
         return colorsArray;
@@ -94,8 +100,8 @@ public class AquariumFish {
             return 3;
         return length + 3;
     }
-    public String makeNoise()
-    {
-        return "blop";
-    }
+//    public String makeNoise()
+//    {
+//        return "blop";
+//    }
 }

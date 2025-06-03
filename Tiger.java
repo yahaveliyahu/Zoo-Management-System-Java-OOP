@@ -6,9 +6,6 @@ public class Tiger extends Predator {
         super(name, age, weight, isMale);
     }
 
-    public Tiger(){
-    }
-
     public int feed() {//check how much food this tiger needs to get
         double meat;
         if (this.isMale()) {
@@ -20,7 +17,8 @@ public class Tiger extends Predator {
         //Tigers CAN eat more than 25 kg of meat
     }
 
-    public String makeNoise() {
-        return "roar";
-    }
+//    public String makeNoise() {
+//        return "roar";
+//    }
 }
+

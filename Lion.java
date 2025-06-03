@@ -5,9 +5,6 @@ public class Lion extends Predator{
     public Lion(String name, int age, float weight, boolean isMale) {
         super(name, age, weight, isMale);
     }
-    public Lion(){
-
-    }
 
     public int feed() {//check how much food this lion needs to get
         double meat;
@@ -20,9 +17,11 @@ public class Lion extends Predator{
             return 25;
         return (int) meat;
     }
-    public String makeNoise()
-    {
-        return "ROAR";
-    }
+//    public String makeNoise()
+//    {
+//        return "ROAR";
+//    }
 
 }
+
+

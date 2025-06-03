@@ -1,33 +1,21 @@
 package yahav_eliyahu_matanya_cohen_arad_rotem;
 
-public class Predator {
+public class Predator extends Animal {
     private String name;
-    private int age;
     private float weight;
     private boolean isMale;
     private int happiness;
     public static final int LIFE_SPAN = 15;
 
     public Predator(String name, int age, float weight, boolean isMale) {
+        super(age);
         this.name = name;
-        this.age = age;
         this.weight = weight;
         this.isMale = isMale;
-        happiness = 100;// at the start every animal has 100 happiness
+        this.happiness = 100;// at the start every animal has 100 happiness
     }
 
-    public Predator() {
-    }
 
-    @Override
-    public String toString() {
-        return "{name='" + name + '\'' +
-                ", age=" + age +
-                ", weight=" + weight +
-                ", isMale=" + isMale +
-                ", Happiness=" + happiness +
-                '}';
-    }
 
     public int getHappiness() {
         return happiness;
@@ -67,5 +55,14 @@ public class Predator {
 
     public void setMale(boolean male) {
         isMale = male;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + ", Name=" + name
+                + ", Weight=" + weight
+                + ", isMale=" + isMale
+                + ", Happiness=" + happiness;
     }
 }

@@ -147,11 +147,12 @@ public class ZooManager {
                 }
                 animals[openPlace] = simplefish;
             } else if (fishType == 1) {
-                colorNum = r.nextInt(10) % 4;//the colors that goldfish can have are only on places 0-3 in the fishColors array
-                GoldFish goldfish = new GoldFish(age, length, fishColors[colorNum]);
+                GoldFish goldfish = new GoldFish(age, length);
                 animals[openPlace] = goldfish;
             } else {//fishType==2
-                ClownFish clownFish = new ClownFish(age, length);
+                String[] mainColors = {"Blue", "Black", "Orange"};
+                String mainColor = mainColors[r.nextInt(3)];
+                ClownFish clownFish = new ClownFish(age, length, mainColor);
                 animals[openPlace] = clownFish;
             }
         }
@@ -170,7 +171,7 @@ public class ZooManager {
 
     public float fishFeedCount() {
         float foodCount = 0;
-        GoldFish g = new GoldFish();
+        GoldFish g = new GoldFish(1, 4.5f);
         ClownFish c = new ClownFish();
         for (AquariumFish fish : getFishArray()) {
             if (fish == null) {
@@ -224,26 +225,26 @@ public class ZooManager {
         return foodCount;
     }
 
-    public String hearTheAnimals() {
-        StringBuilder sb = new StringBuilder();
-        Penguin penguin = new Penguin();
-        Lion lion = new Lion();
-        Tiger tiger = new Tiger();
-        AquariumFish fish = new AquariumFish();
-        if (getPenguinsArray().length != 0) {
-            sb.append(penguin.makeNoise());
-        }
-        if (getLionArray().length != 0) {
-            sb.append(lion.makeNoise());
-        }
-        if (getTigerArray().length != 0) {
-            sb.append(tiger.makeNoise());
-        }
-        if (getFishArray().length != 0) {
-            sb.append(fish.makeNoise());
-        }
-        return sb.toString();
-    }
+//    public String hearTheAnimals() {
+//        StringBuilder sb = new StringBuilder();
+//        Penguin penguin = new Penguin();
+//        Lion lion = new Lion();
+//        Tiger tiger = new Tiger();
+//        AquariumFish fish = new AquariumFish();
+//        if (getPenguinsArray().length != 0) {
+//            sb.append(penguin.makeNoise());
+//        }
+//        if (getLionArray().length != 0) {
+//            sb.append(lion.makeNoise());
+//        }
+//        if (getTigerArray().length != 0) {
+//            sb.append(tiger.makeNoise());
+//        }
+//        if (getFishArray().length != 0) {
+//            sb.append(fish.makeNoise());
+//        }
+//        return sb.toString();
+//    }
 
     public int[] CountFish() {
         int clownFishCount = 0, goldFishCount = 0, simpleFishCount = 0;

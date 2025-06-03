@@ -32,7 +32,7 @@ public class Main {
     public static Scanner s = new Scanner(System.in);
     public static ZooManager zoo = new ZooManager();
 
-    public static void main(String[] args) {
+    public static void main() {
 
         zoo.builtInAnimals();//Hard coded that was required
         run();
@@ -74,7 +74,7 @@ public class Main {
                     FeedTheAnimals();
                     break;
                 case 9:
-                    HearTheAnimals();
+                  //  HearTheAnimals();
                     break;
                 case 10:
                     AgeOneYear();
@@ -175,13 +175,13 @@ public class Main {
     }
 
     private static void addPredators() {
-        System.out.println("Do you want to add a Lion or a Tiger to the zoo?");
+        System.out.println("Do you want to add a L (for Lion) or a T (for Tiger) to the zoo?");
         String animal = s.next();
-        while (!animal.equalsIgnoreCase("Lion") && !animal.equalsIgnoreCase("Tiger")) {
-            System.out.println("Invalid pattern. Please enter a valid fish type (Lion/Tiger): ");
+        while (!animal.equalsIgnoreCase("L") && !animal.equalsIgnoreCase("T")) {
+            System.out.println("Invalid pattern. Please enter a valid predator (L/T): ");
             animal = s.next();
         }
-        if (animal.equalsIgnoreCase("Lion")) {
+        if (animal.equalsIgnoreCase("L")) {
             addLion();
         } else {
             addTiger();
@@ -341,11 +341,11 @@ public class Main {
         if (zoo.getAnimalArray()[zoo.getAnimalArray().length - 1] != null) {//multiplies the array if it's full(required from the instructions)
             newAnimalArray = Arrays.copyOf(zoo.getAnimalArray(), zoo.getAnimalArray().length * 2);
         }
-        System.out.println("Enter the type of the fish(Simplefish/Clownfish/Goldfish):");
+        System.out.println("Enter the type of the fish(Simple (for Simplefish)/Clown (for Clownfish)/Gold (for Goldfish)):");
         String fishtype = s.next();
-        while (!fishtype.equalsIgnoreCase("Simplefish") && !fishtype.equalsIgnoreCase("Clownfish") &&
-                !fishtype.equalsIgnoreCase("Goldfish")) {
-            System.out.println("Invalid pattern. Please enter a valid fish type (Simplefish/Clownfish/Goldfish): ");
+        while (!fishtype.equalsIgnoreCase("Simple") && !fishtype.equalsIgnoreCase("Clown") &&
+                !fishtype.equalsIgnoreCase("Gold")) {
+            System.out.println("Invalid pattern. Please enter a valid fish type (Simple/Clown/Gold): ");
             fishtype = s.next();
         }
         fishtype = fishtype.substring(0, 1).toUpperCase() + fishtype.substring(1).toLowerCase();//make the first letter to an uppercase letter and the rest to lowercase letters
@@ -382,7 +382,7 @@ public class Main {
             }
         }
         openPlace = zoo.FindOpenPlace(zoo.getAnimalArray());
-        if (fishtype.equals("Simplefish")) {//if the user chose to insert a Simple fish to the Aquarium
+        if (fishtype.equals("Simple")) {//if the user chose to insert a Simple fish to the Aquarium
             System.out.println("Enter fish pattern(Dots, Strips, Stains, Blank)");
             pattern = s.next();
             while (!pattern.equalsIgnoreCase("Dots") && !pattern.equalsIgnoreCase("Strips") &&
@@ -430,20 +430,21 @@ public class Main {
                 fish.addColor(color);
             }
             newAnimalArray[openPlace + 1] = fish;
-        } else if (fishtype.equals("Clownfish")) {//if the user chose to insert a Clownfish to the Aquarium
-            ClownFish clownFish = new ClownFish(age, length);
+        } else if (fishtype.equals("Clown")) {//if the user chose to insert a Clownfish to the Aquarium
+            System.out.println("Enter main color of the ClownFish (Blue, Black, Orange):");
+            color = s.next();
+
+            while (!color.equalsIgnoreCase("Blue") && !color.equalsIgnoreCase("Black") && !color.equalsIgnoreCase("Orange")) {
+                System.out.println("Invalid color. Please enter Blue, Black, or Orange:");
+                color = s.next();
+            }
+
+            color = color.substring(0, 1).toUpperCase() + color.substring(1).toLowerCase();
+            ClownFish clownFish = new ClownFish(age, length, color);
             openPlace = zoo.FindOpenPlace(zoo.getFishArray());
             newAnimalArray[openPlace + 1] = clownFish;
         } else {//fishtype.equals("Goldfish")
-            System.out.println("Enter a color(Black, Orange,  Yellow,  Gold)");
-            color = s.next();
-            while (!color.equalsIgnoreCase("Black") && !color.equalsIgnoreCase("Orange") &&
-                    !color.equalsIgnoreCase("Yellow") && !color.equalsIgnoreCase("Gold")) {
-                System.out.println("Invalid pattern. Please enter a valid color (Black, White, Green, Orange, Blue, Yellow, Brown, Gold, Red, Cyan): ");
-                color = s.next();
-            }
-            color = color.substring(0, 1).toUpperCase() + color.substring(1).toLowerCase();//make the first letter to an uppercase letter and the rest to lowercase letters
-            GoldFish goldFish = new GoldFish(age, length, color);
+            GoldFish goldFish = new GoldFish(age, length);
             openPlace = zoo.FindOpenPlace(zoo.getFishArray());
             newAnimalArray[openPlace + 1] = goldFish;
         }
@@ -488,7 +489,7 @@ public class Main {
 
         for (Penguin p : penguinsArray) {
             if (p != null) {
-                System.out.println(p.toString());
+                System.out.println(p);
             }
         }
     }
@@ -502,7 +503,7 @@ public class Main {
                 if (l == null) {
                     continue;
                 }
-                System.out.println(l.toString());
+                System.out.println(l);
             }
         }
         if (zoo.getTigerArray().length == 0) {
@@ -513,19 +514,20 @@ public class Main {
                 if (t == null) {
                     continue;
                 }
-                System.out.println(t.toString());
+                System.out.println(t);
             }
         }
     }
 
     private static void showFish() {
         int[] colorsCount = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        AquariumFish allFishColor = new AquariumFish();// we'll create an empty fish and use only his colorsArray functions to make an array of all the colors in the Aquarium
+        AquariumFish allFishColor = new AquariumFish(0, 0f);
+        // we'll create an empty fish and use only his colorsArray functions to make an array of all the colors in the Aquarium
         for (AquariumFish fish : (AquariumFish[]) zoo.getFishArray()) {
             if (fish == null) {
                 continue;
             }
-            System.out.println(fish.toString());
+            System.out.println(fish);
             for (int i = 0; i < fish.getColorsArray().length; i++) {
                 if (allFishColor.getColorsArray() != null) {
                     if (!allFishColor.isColorExist(fish.getColorsArray()[i])) {
@@ -570,7 +572,7 @@ public class Main {
             st.append(zoo.fishColors[b]).append(" : ").append(colorsCount[b]).append("\n");
 
         }
-        System.out.println("The fishes in the Aquarium have the colors: " + colors.toString());
+        System.out.println("The fishes in the Aquarium have the colors: " + colors);
         //System.out.println(st.toString());//print each colors count
         if (max1 != 0 && max2 != 0) {//print if there is more than 1 color in the Aquarium
             System.out.println("And the most dominants colors are: " + zoo.fishColors[maxplace1] + " and " + zoo.fishColors[maxplace2]);
@@ -595,9 +597,9 @@ public class Main {
         zoo.HappyAnimals();//after feeding the animals, their happiness becomes 100
     }
 
-    private static void HearTheAnimals() {
-        System.out.println(zoo.hearTheAnimals());
-    }
+//    private static void HearTheAnimals() {
+//        System.out.println(zoo.hearTheAnimals());
+//    }
 
     private static void AgeOneYear() {
         zoo.AgeOneYear();

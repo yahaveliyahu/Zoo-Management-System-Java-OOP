@@ -1,42 +1,29 @@
 package yahav_eliyahu_matanya_cohen_arad_rotem;
 
-public class Penguin implements Comparable<Penguin> {
+public class Penguin extends Animal implements Comparable<Penguin> {
     private String name;
-    private int age;
     private float height;
     private boolean isLeader;
     private int happiness;
     public static final int LIFE_SPAN=6;
 
     public Penguin(String name, int age, float height, boolean isLeader) {
+        super(age);
         this.name = name;
-        this.age = age;
         this.height = height;
         this.isLeader = isLeader;
-        happiness=100;// at the start every animal has 100 happiness
+        this.happiness=100;// at the start every animal has 100 happiness
     }
-    public Penguin(){
 
-    }
-    @Override
-    public int compareTo(Penguin other) {
-        return Float.compare(other.height, this.height); // Sort by height in descending order
-    }
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
+
+    public float getHeight() { return height; }
 
     public void setHeight(float height) {
         this.height = height;
@@ -58,22 +45,24 @@ public class Penguin implements Comparable<Penguin> {
         return isLeader;
     }
 
-    public float getHeight() {
-        return height;
+    @Override
+    public int compareTo(Penguin other) {
+        return Float.compare(other.height, this.height); // Sort by height in descending order
     }
 
     @Override
     public String toString() {
-        String result = "Name: " + name + ", Age: " + age + ", Height: " + height + " meters"+ " Happiness="+happiness;
+        String result = super.toString();
+        result += ", Name: " + name + ", Height: " + height + " meters,"+ " Happiness="+happiness;
         if (isLeader) {
             result += " - I can lead the Group!";
         }
         return result;
     }
-    public String makeNoise()
-    {
-        return "squack";
-    }
+//    public String makeNoise()
+//    {
+//        return "squack";
+//    }
     public int feed(){
         return 1;
     }
