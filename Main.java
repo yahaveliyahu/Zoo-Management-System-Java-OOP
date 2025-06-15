@@ -63,21 +63,30 @@ public class Main {
                     break;
                 case 5:
                     showPenguin();
+                    DBManager.showPenguinFromDB();
+
                     break;
                 case 6:
                     showPredators();
+                    DBManager.showPredatorsFromDB();
+
                     break;
                 case 7:
                     showFish();
+                    DBManager.showAquariumFishFromDB();
                     break;
                 case 8:
                     FeedTheAnimals();
+                    DBManager.FeedTheAnimalsFromDB();
+
                     break;
                 case 9:
                   //  HearTheAnimals();
                     break;
                 case 10:
                     AgeOneYear();
+                    DBManager.ageOneYear();
+
                     System.out.println("All animals have aged one year.");
                     break;
                 default:
