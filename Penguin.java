@@ -1,4 +1,4 @@
-package yahav_eliyahu_matanya_cohen_arad_rotem;
+package yahav_eliyahu_arad_rotem;
 
 public class Penguin extends Animal implements Comparable<Penguin> {
     private String name;
@@ -7,7 +7,7 @@ public class Penguin extends Animal implements Comparable<Penguin> {
     private int happiness;
     public static final int LIFE_SPAN=6;
 
-    public Penguin(String name, int age, float height, boolean isLeader) {
+    public Penguin(String name, int age, float height, boolean isLeader, int LIFE_SPAN) {
         super(age);
         this.name = name;
         this.height = height;
@@ -43,6 +43,10 @@ public class Penguin extends Animal implements Comparable<Penguin> {
 
     public boolean isLeader() {
         return isLeader;
+    }
+
+    public int getLifeSpan() {
+        return LIFE_SPAN;
     }
 
     @Override

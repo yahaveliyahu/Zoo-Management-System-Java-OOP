@@ -1,4 +1,4 @@
-package yahav_eliyahu_matanya_cohen_arad_rotem;
+package yahav_eliyahu_arad_rotem;
 
 public class ClownFish extends AquariumFish{
     public static final int LIFE_SPAN=8;
@@ -19,4 +19,9 @@ public class ClownFish extends AquariumFish{
     public float feed(){
         return 2;
     }
+
+    public int getLifeSpan() {
+        return LIFE_SPAN;
+    }
+
 }

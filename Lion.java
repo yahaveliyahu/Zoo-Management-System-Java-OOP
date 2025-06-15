@@ -1,9 +1,22 @@
-package yahav_eliyahu_matanya_cohen_arad_rotem;
+package yahav_eliyahu_arad_rotem;
 
 public class Lion extends Predator{
 
-    public Lion(String name, int age, float weight, boolean isMale) {
-        super(name, age, weight, isMale);
+    private String maneColor;
+    private int meatAmount;
+
+    public Lion(String name, int age, float weight, boolean isMale, int lifeSpan, String maneColor) {
+        super(name, age, weight, isMale, Predator.LIFE_SPAN);
+        this.meatAmount = feed();
+        if (isMale && maneColor != null) {
+            this.maneColor = maneColor;
+        } else {
+            this.maneColor = null;
+        }
+    }
+
+    public String getManeColor() {
+        return maneColor;
     }
 
     public int feed() {//check how much food this lion needs to get
@@ -21,6 +34,11 @@ public class Lion extends Predator{
 //    {
 //        return "ROAR";
 //    }
+
+
+    public int getMeatAmount() {
+        return feed();
+    }
 
 }
 

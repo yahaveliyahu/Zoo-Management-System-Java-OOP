@@ -1,4 +1,4 @@
-package yahav_eliyahu_matanya_cohen_arad_rotem;
+package yahav_eliyahu_arad_rotem;
 
 public class SimpleFish extends AquariumFish{
     public static final int LIFE_SPAN=25;
@@ -7,4 +7,12 @@ public class SimpleFish extends AquariumFish{
     super(age, length,pattern,colors);
         setHappiness(100);
     }
+
+    public int getLifeSpan() {
+        return LIFE_SPAN;
+    }
+
+
+
 }
+

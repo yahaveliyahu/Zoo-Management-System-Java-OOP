@@ -1,4 +1,4 @@
-package yahav_eliyahu_matanya_cohen_arad_rotem;
+package yahav_eliyahu_arad_rotem;
 
 import java.util.Random;
 
@@ -91,21 +91,21 @@ public class ZooManager {
     }
 
     public void builtInAnimals() {
-        Penguin leader = new Penguin("Skeeper", 4, 200, true);//Leader penguin at the beginning
+        Penguin leader = new Penguin("Skeeper", 4, 200, true, Penguin.LIFE_SPAN);//Leader penguin at the beginning
         animals = new Object[20];
         int openPlace = FindOpenPlace(animals);
         animals[openPlace] = leader;
-        Penguin p1 = new Penguin("Ricco", 3, 180, false);
+        Penguin p1 = new Penguin("Ricco", 3, 180, false, Penguin.LIFE_SPAN);
         openPlace = FindOpenPlace(animals);
         animals[openPlace] = p1;
-        Penguin p2 = new Penguin("Private", 2, 170, false);
+        Penguin p2 = new Penguin("Private", 2, 170, false, Penguin.LIFE_SPAN);
         openPlace = FindOpenPlace(animals);
         animals[openPlace] = p2;
 
-        Lion l1 = new Lion("Mufasa", 12, 60, true);// Male that eats 25 Kg of meat
-        Lion l2 = new Lion("Simba", 5, 30, true);// Male that eats less than 25 Kg of meat
-        Lion l3 = new Lion("Sarabi", 11, 40, false);// Female that eats 25 Kg of meat
-        Lion l4 = new Lion("Nala", 7, 30, false);// Female that eats less than 25 Kg of meat
+        Lion l1 = new Lion("Mufasa", 12, 60, true ,Predator.LIFE_SPAN, "DarkBrown");// Male that eats 25 Kg of meat
+        Lion l2 = new Lion("Simba", 5, 30, true ,Predator.LIFE_SPAN, "Golden");// Male that eats less than 25 Kg of meat
+        Lion l3 = new Lion("Sarabi", 11, 40, false ,Predator.LIFE_SPAN, null);// Female that eats 25 Kg of meat
+        Lion l4 = new Lion("Nala", 7, 30, false ,Predator.LIFE_SPAN, null);// Female that eats less than 25 Kg of meat
         openPlace = FindOpenPlace(animals);
         animals[openPlace] = l1;
         openPlace = FindOpenPlace(animals);

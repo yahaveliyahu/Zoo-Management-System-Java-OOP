@@ -6,12 +6,9 @@
  **/
 
 
-package yahav_eliyahu_matanya_cohen_arad_rotem;
+package yahav_eliyahu_arad_rotem;
 
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -161,7 +158,7 @@ public class Main {
                 temp = s.next();
             }
         }
-        Penguin p = new Penguin(name, age, height, false);//the leader is already chosen so every new penguin cant be the leader
+        Penguin p = new Penguin(name, age, height, false, 6);//the leader is already chosen so every new penguin cant be the leader
         Object[] newAnimalArray = zoo.getAnimalArray();
 
         if (zoo.getAnimalArray()[zoo.getAnimalArray().length - 1] != null) {//multiplies the array if it's full(required from the instructions)
@@ -248,7 +245,7 @@ public class Main {
                 temp = s.next();
             }
         }
-        Lion lion = new Lion(name, age, weight, isMale);
+        Lion lion = new Lion(name, age, weight, isMale,Predator.LIFE_SPAN, "brown");
         Object[] newAnimalArray = zoo.getAnimalArray();
         if (zoo.getAnimalArray()[zoo.getAnimalArray().length - 1] != null) {//multiplies the array if it's full(required from the instructions)
             newAnimalArray = Arrays.copyOf(newAnimalArray, newAnimalArray.length * 2);
@@ -320,7 +317,8 @@ public class Main {
                 temp = s.next();
             }
         }
-        Tiger tiger = new Tiger(name, age, weight, isMale);
+        Random r = new Random();
+        Tiger tiger = new Tiger(name, age, weight, isMale,Predator.LIFE_SPAN, r.nextInt(21) + 100);
         Object[] newAnimalArray = zoo.getAnimalArray();
         if (zoo.getAnimalArray()[zoo.getAnimalArray().length - 1] != null) {//multiplies the array if it's full(required from the instructions)
             newAnimalArray = Arrays.copyOf(newAnimalArray, newAnimalArray.length * 2);
