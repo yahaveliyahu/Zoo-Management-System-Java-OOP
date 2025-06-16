@@ -30,13 +30,14 @@ public class Main {
     public static ZooManager zoo = new ZooManager();
 
     public static void main() {
+        DBManager.resetZoo();
 
         zoo.builtInAnimals();//Hard coded that was required
         run();
         s.close();
     }
 
-    public static void run() {
+   public static void run(){
         int choice;
         do {
 
@@ -47,7 +48,8 @@ public class Main {
                     System.out.println("Exiting the program, GOODBYE!");
                     break;
                 case 1:
-                    showZoo(zoo);
+                    //showZoo(zoo);
+                    DBManager.showZooFromDB();
                     break;
                 case 2:
                     addPenguin();
@@ -59,21 +61,21 @@ public class Main {
                     addFish();
                     break;
                 case 5:
-                    showPenguin();
+                    //showPenguin();
                     DBManager.showPenguinFromDB();
 
                     break;
                 case 6:
-                    showPredators();
+                    //showPredators();
                     DBManager.showPredatorsFromDB();
 
                     break;
                 case 7:
-                    showFish();
+                    //showFish();
                     DBManager.showAquariumFishFromDB();
                     break;
                 case 8:
-                    FeedTheAnimals();
+                    //FeedTheAnimals();
                     DBManager.FeedTheAnimalsFromDB();
 
                     break;
@@ -81,8 +83,12 @@ public class Main {
                   //  HearTheAnimals();
                     break;
                 case 10:
-                    AgeOneYear();
-                    DBManager.ageOneYear();
+                    //AgeOneYear();
+                    try {
+                        DBManager.ageOneYear();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
 
                     System.out.println("All animals have aged one year.");
                     break;
@@ -177,7 +183,8 @@ public class Main {
         newAnimalArray[openPlace] = p;
         zoo.setAnimalArray(newAnimalArray);
 
-
+        int nextId = DBManager.getNextAvailableAnimalID();
+        DBManager.insertPenguin(p, nextId);
     }
 
     private static void addPredators() {
@@ -264,6 +271,8 @@ public class Main {
         newAnimalArray[openPlace] = lion;
         zoo.setAnimalArray(newAnimalArray);
 
+        int nextId = DBManager.getNextAvailableAnimalID();
+        DBManager.insertLion(lion, nextId);
     }
 
     public static void addTiger() {
@@ -337,12 +346,15 @@ public class Main {
         newAnimalArray[openPlace] = tiger;
         zoo.setAnimalArray(newAnimalArray);
 
+        int nextId = DBManager.getNextAvailableAnimalID();
+        DBManager.insertTiger(tiger, nextId);
     }
 
     public static void addFish() {
         int openPlace;
         int age, numOfColors;
         float length;
+        int nextId = DBManager.getNextAvailableAnimalID();
         String pattern, color, temp;
         Object[] newAnimalArray = zoo.getAnimalArray();
         if (zoo.getAnimalArray()[zoo.getAnimalArray().length - 1] != null) {//multiplies the array if it's full(required from the instructions)
@@ -437,6 +449,10 @@ public class Main {
                 fish.addColor(color);
             }
             newAnimalArray[openPlace + 1] = fish;
+
+            DBManager.insertSimpleFish(fish, nextId);
+
+            
         } else if (fishtype.equals("Clown")) {//if the user chose to insert a Clownfish to the Aquarium
             System.out.println("Enter main color of the ClownFish (Blue, Black, Orange):");
             color = s.next();
@@ -450,10 +466,17 @@ public class Main {
             ClownFish clownFish = new ClownFish(age, length, color);
             openPlace = zoo.FindOpenPlace(zoo.getFishArray());
             newAnimalArray[openPlace + 1] = clownFish;
+
+            DBManager.insertClownFish(clownFish, nextId);
+
+            
         } else {//fishtype.equals("Goldfish")
             GoldFish goldFish = new GoldFish(age, length);
             openPlace = zoo.FindOpenPlace(zoo.getFishArray());
             newAnimalArray[openPlace + 1] = goldFish;
+            
+            DBManager.insertGoldFish(goldFish, nextId);
+
         }
         zoo.setAnimalArray(newAnimalArray);
     }
