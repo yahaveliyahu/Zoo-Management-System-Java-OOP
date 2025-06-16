@@ -6,6 +6,23 @@ import java.util.Scanner;
 
 public class DBManager {
 
+    public static int getNextAvailableAnimalID() {
+        int nextId = 1; // ברירת מחדל למקרה שהטבלה ריקה
+
+        try (Connection conn = DBConnector.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT MAX(AnimalID) FROM Animal")) {
+
+            if (rs.next()) {
+                nextId = rs.getInt(1) + 1;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("❌ Error fetching next AnimalID: " + e.getMessage());
+        }
+
+        return nextId;
+    }
     public static void insertPenguin(Penguin p, int id) {
         try (Connection conn = DBConnector.connect()) {
 
