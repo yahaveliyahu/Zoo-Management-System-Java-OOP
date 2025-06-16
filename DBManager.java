@@ -241,7 +241,59 @@ public class DBManager {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public static void insertRandomFishToDB(int num) {
+        int numOfColors, colorNum, age, patternNum, fishType;
+        float length;
+        String pattern;
+        String[] colors;
+        Random r = new Random();
 
+        String[] fishPattern = {"Stripes", "Spots", "Solid", "Gradient"};
+        String[] fishColors = {"Red", "Blue", "Green", "Yellow", "Orange", "Black", "White", "Purple", "Pink", "Brown"};
+
+        int nextId = getNextAvailableAnimalID();
+
+        for (int i = 0; i < num; i++) {
+            int id = nextId + i;
+
+
+            length = r.nextFloat() + r.nextInt(20);
+            fishType = r.nextInt(3); // 0 = Simple, 1 = GoldFish, 2 = ClownFish
+
+            if (fishType == 0) { // SimpleFish
+                age = r.nextInt(24) + 1;
+                numOfColors = r.nextInt(10) + 1;
+                patternNum = r.nextInt(4);
+                pattern = fishPattern[patternNum];
+                colors = new String[0];
+                SimpleFish simplefish = new SimpleFish(age, length, pattern, colors);
+
+                for (int j = 0; j < numOfColors; j++) {
+                    do {
+                        colorNum = r.nextInt(10);
+                    } while (simplefish.isColorExist(fishColors[colorNum]));
+                    simplefish.addColor(fishColors[colorNum]);
+                }
+
+                insertSimpleFish(simplefish, id);
+
+            } else if (fishType == 1) { // GoldFish
+                age = r.nextInt(11) + 1;
+                GoldFish goldfish = new GoldFish(age, length);
+                insertGoldFish(goldfish, id);
+
+            } else { // ClownFish
+                age = r.nextInt(7) + 1;
+                String[] mainColors = {"Blue", "Black", "Orange"};
+                String mainColor = mainColors[r.nextInt(3)];
+                ClownFish clownFish = new ClownFish(age, length, mainColor);
+                insertClownFish(clownFish, id);
+            }
+        }
+
+        System.out.println("✅ Successfully inserted " + num + " random fish into the database.");
+    }
+    
    public static void ageOneYear() throws SQLException {
         Random rand = new Random();
 
