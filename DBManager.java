@@ -153,11 +153,12 @@ public class DBManager {
             ps1.setInt(2, sf.getAge());
             ps1.executeUpdate();
 
-            PreparedStatement ps2 = conn.prepareStatement("INSERT INTO AquariumFish (fishid, length, sign, happiness) VALUES (?, ?, ?, ?)");
+            PreparedStatement ps2 = conn.prepareStatement("INSERT INTO AquariumFish (fishid, length, colorarray, sign, happiness) VALUES (?, ?, ?, ?, ?)");
             ps2.setInt(1, id);
             ps2.setFloat(2, sf.getLength());
-            ps2.setString(3, sf.getSign());
-            ps2.setInt(4, sf.getHappiness());
+            ps2.setString(3, convertColorsArrayToString(sf.getColorsArray()));
+            ps2.setString(4, sf.getSign());
+            ps2.setInt(5, sf.getHappiness());
             ps2.executeUpdate();
 
             PreparedStatement ps3 = conn.prepareStatement("INSERT INTO SimpleFish (simplefishid, life_span) VALUES (?, ?)");
@@ -187,11 +188,12 @@ public class DBManager {
             ps1.setInt(2, cf.getAge());
             ps1.executeUpdate();
 
-            PreparedStatement ps2 = conn.prepareStatement("INSERT INTO AquariumFish (fishid, length, sign, happiness) VALUES (?, ?, ?, ?)");
+            PreparedStatement ps2 = conn.prepareStatement("INSERT INTO AquariumFish (fishid, length, colorarray, sign, happiness) VALUES (?, ?, ?, ?, ?)");
             ps2.setInt(1, id);
             ps2.setFloat(2, cf.getLength());
-            ps2.setString(3, cf.getSign());
-            ps2.setInt(4, cf.getHappiness());
+            ps2.setString(3, convertColorsArrayToString(cf.getColorsArray()));
+            ps2.setString(4, cf.getSign());
+            ps2.setInt(5, cf.getHappiness());
             ps2.executeUpdate();
 
             PreparedStatement ps3 = conn.prepareStatement("INSERT INTO ClownFish (clownfishid, life_span) VALUES (?, ?)");
@@ -221,11 +223,12 @@ public class DBManager {
             ps1.setInt(2, gf.getAge());
             ps1.executeUpdate();
 
-            PreparedStatement ps2 = conn.prepareStatement("INSERT INTO AquariumFish (fishid, length, sign, happiness) VALUES (?, ?, ?, ?)");
+            PreparedStatement ps2 = conn.prepareStatement("INSERT INTO AquariumFish (fishid, length, colorarray, sign, happiness) VALUES (?, ?, ?, ?, ?)");
             ps2.setInt(1, id);
-            ps2.setFloat(2, gf.getLength());
-            ps2.setString(3, gf.getSign());
-            ps2.setInt(4, gf.getHappiness());
+            ps2.setFloat(2, gf.getLength());                       
+            ps2.setString(3, convertColorsArrayToString(gf.getColorsArray()));
+            ps2.setString(4, gf.getSign());
+            ps2.setInt(5, gf.getHappiness());
             ps2.executeUpdate();
 
             PreparedStatement ps3 = conn.prepareStatement("INSERT INTO GoldFish (goldfishid, life_span) VALUES (?, ?)");
@@ -262,7 +265,7 @@ public class DBManager {
 
             if (fishType == 0) { // SimpleFish
                 age = r.nextInt(24) + 1;
-                numOfColors = r.nextInt(10) + 1;
+                numOfColors = r.nextInt(5) + 1;
                 patternNum = r.nextInt(4);
                 pattern = fishPattern[patternNum];
                 colors = new String[0];
@@ -1055,6 +1058,20 @@ public class DBManager {
         } catch (SQLException e) {
             System.err.println("❌ Error while resetting the zoo: " + e.getMessage());
         }
+    }
+    public static String convertColorsArrayToString(String[] colors) {
+        if (colors == null || colors.length == 0) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < colors.length; i++) {
+            sb.append(colors[i]);
+            if (i < colors.length - 1) {
+                sb.append(",");
+            }
+        }
+        return sb.toString();
     }
 
 }
