@@ -414,7 +414,7 @@ public class Main {
                 try {
                     System.out.println("How many colors does the fish have? ");
                     numOfColors = s.nextInt();
-                    if (numOfColors > 10 || numOfColors < 1) {
+                    if (numOfColors > 5 || numOfColors < 1) {
                         throw new IllegalArgumentException("A fish cannot have more than 10 colors or be colorless (considering that the fish can only be of the above 10 colors)."
                                 + "Please enter a valid number of colors (up to 10): ");
                     } else {
