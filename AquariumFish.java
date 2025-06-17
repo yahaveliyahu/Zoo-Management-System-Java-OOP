@@ -71,6 +71,9 @@ public class AquariumFish extends Animal {
     public void setColorsArray(String[] colorsArray) {
         this.colorsArray = colorsArray;
     }
+        public String[] getColorsArray(String[] colorsArray) {
+        return colorsArray;
+    }
 
     @Override
     public String toString() {
