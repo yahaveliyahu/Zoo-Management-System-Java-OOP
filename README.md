@@ -69,8 +69,8 @@ DBManager.java            // Executes all DB operations
 
 ## 👨‍💻 Technologies
 
-Java 17+
-JDBC (Java Database Connectivity)
-PostgreSQL
-pgAdmin
-IntelliJ
+- Java 17+
+- JDBC (Java Database Connectivity)
+- PostgreSQL
+- pgAdmin
+- IntelliJ
