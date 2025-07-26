@@ -1,5 +1,5 @@
 
-# 🦁 Zoo Management System - Java OOP
+# 🦁 Zoo Management System - Java OOP + PostgreSQL
 
 A Java-based application that demonstrates Object-Oriented Programming (OOP) concepts through the simulation and management of a zoo with integrated PostgreSQL database support via pgAdmin.
 
